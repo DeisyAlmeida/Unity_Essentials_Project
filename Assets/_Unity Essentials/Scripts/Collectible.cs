@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Collectible : MonoBehaviour
 {
     public float rotationSpeed;
     public GameObject onCollectEffect;
@@ -18,10 +18,14 @@ public class NewBehaviourScript : MonoBehaviour
         transform.Rotate(0, rotationSpeed, 0);
 
     }
-    private void OnTriggerEnter(Collider outro)
+    private void OnTriggerEnter(Collider other)
     {
-        // Destroy the collectible
-        Destroy(gameObject);
+        if (other.CompareTag("Player"))
+        {
+
+            // Destroy the collectible
+            Destroy(gameObject);
+        }
 
         // instantiate the particle effect
         Instantiate(onCollectEffect, transform.position, transform.rotation);
